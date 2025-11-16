@@ -1,9 +1,9 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-//#include "m65legorev9-layouts.dtsi"
+#include "m65legorev9-layouts.dtsi"
 
 / {
   chosen {
-    // zmk,physical-layout = &physical_layout0;
+    zmk,physical-layout = &physical_layout0;
     zmk,battery = &vbatt;
   };
 
@@ -16,7 +16,7 @@
     data-out-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
     data-in-gpios  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
 
-    status = "disabled";
+    status = "okay";
   };
 
   vbatt: vbatt {
