@@ -8,7 +8,7 @@
   };
 
   // KSCAN
-  kscan0: kscan0 {
+  m65legorev9: m65legorev9 {
     compatible = "m65legorev9,kscan";
 
     latch-gpio = <&gpio0 7 GPIO_ACTIVE_HIGH>;  /* KMK board.D7 */
