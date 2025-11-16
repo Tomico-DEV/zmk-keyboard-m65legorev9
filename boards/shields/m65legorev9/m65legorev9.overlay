@@ -1,0 +1,37 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+#include "m65legorev9-layouts.dtsi"
+
+/ {
+  chosen {
+    zmk,physical-layout = &physical_layout0;
+    zmk,battery = &vbatt;
+  };
+
+  // KSCAN
+  kscan0: kscan0 {
+    compatible = "m65legorev9,kscan";
+
+    latch-gpio = <&gpio0 7 GPIO_ACTIVE_HIGH>;  /* KMK board.D7 */
+    clock-gpio = <&gpio0 8 GPIO_ACTIVE_HIGH>;  /* KMK board.D8 */
+    data-out-gpio = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
+    data-in-gpio  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
+  };
+
+  vbatt: vbatt {
+      compatible = "zmk,battery-nrf-vddh";
+  };
+
+  encoder0: encoder0 {
+    compatible = "alps,ec11";
+    a-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    steps = <80>;
+    status = "okay";
+  };
+
+  sensors: sensors {
+    compatible = "zmk,keymap-sensors";
+    sensors = <&encoder0>;
+    triggers-per-rotation = <20>;
+  };
+};

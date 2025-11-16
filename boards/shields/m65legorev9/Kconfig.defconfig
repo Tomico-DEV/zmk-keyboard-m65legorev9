@@ -1,0 +1,6 @@
+if SHIELD_M65LEGOREV9
+
+config ZMK_KEYBOARD_NAME
+  default "M65 Lego Rev 9"
+
+endif

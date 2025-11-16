@@ -1,0 +1,11 @@
+file_format: "1"
+id: m65legor9
+name: M65 Lego Rev 9
+type: shield
+requires: [seeed_xiao]
+features:
+  - keys
+  - studio
+  - encoder
+  - battery
+  - bluetooth
