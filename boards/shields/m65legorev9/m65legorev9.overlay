@@ -11,10 +11,10 @@
   m65legorev9: m65legorev9 {
     compatible = "m65legorev9,kscan";
 
-    latch-gpio = <&gpio0 7 GPIO_ACTIVE_HIGH>;  /* KMK board.D7 */
-    clock-gpio = <&gpio0 8 GPIO_ACTIVE_HIGH>;  /* KMK board.D8 */
-    data-out-gpio = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
-    data-in-gpio  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
+    latch-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;  /* KMK board.D7 */
+    clock-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;  /* KMK board.D8 */
+    data-out-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
+    data-in-gpios  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
   };
 
   vbatt: vbatt {
