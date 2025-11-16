@@ -1,5 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-#include "m65legorev9-layouts.dtsi"
+//#include "m65legorev9-layouts.dtsi"
 
 / {
   chosen {
