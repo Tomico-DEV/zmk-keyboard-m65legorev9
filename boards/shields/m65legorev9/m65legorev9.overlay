@@ -16,7 +16,7 @@
     data-out-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
     data-in-gpios  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
 
-    status = "disbled";
+    status = "disabled";
   };
 
   vbatt: vbatt {
