@@ -3,19 +3,22 @@ if SHIELD_M65LEGOREV9
 config ZMK_KEYBOARD_NAME
   default "M65 Lego Rev 9"
 
-config USB_NRFX
-	default y
+# config USB_NRFX
+# 	default y
 
-config USB_DEVICE_STACK
-	default y
+# config USB_DEVICE_STACK
+# 	default y
 
-config BT_CTLR
-	default BT
+# config BT_CTLR
+# 	default BT
 
-config ZMK_BLE
-	default y
+# config ZMK_BLE
+# 	default y
 
-config ZMK_USB
+# config ZMK_USB
+# 	default y
+
+config SPI
 	default y
 
 endif

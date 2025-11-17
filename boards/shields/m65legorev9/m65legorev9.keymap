@@ -17,13 +17,14 @@
       // | SHIFT |   \   |  Z   |  X   |   C   |   V   |   B   |   K   |  M   |  ,  |  .   |  UP  |   /   |
       // | LCTL  | SUPER | LALT | LOWR | SPACE | SPACE | SPACE | SPACE | RAIS |  `  | LEFT | DOWN | RIGHT |
       bindings = <
-        &kp ESC    &kp N1   &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9    &kp N0   &kp MINUS        &kp EQUAL
+        &kp ESC    &kp N1   &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp N8 &kp N9    &kp N0   &kp MINUS        &kp EQUAL     &none
         &kp TAB    &kp Q    &kp W  &kp F  &kp P  &kp G  &kp J  &kp L  &kp U  &kp Y     &kp SEMI &kp LBKT         &kp RBKT
         &kp BSPC   &kp A    &kp R  &kp S  &kp T  &kp D  &kp H  &kp N  &kp E  &kp I     &kp O    &kp SINGLE_QUOTE &kp ENTER
-        &kp LSHIFT &kp BSLH &kp Z  &kp X  &kp C  &kp V  &kp B  &kp K  &kp M  &kp COMMA &kp DOT  &kp UP           &kp FSLH
-        &kp LCTRL  &kp LGUI &kp LALT &mo 1 &kp SPACE &kp SPACE &kp SPACE &kp SPACE &to 2 &kp GRAVE &kp LEFT &kp DOWN &kp RIGHT
+        &kp LSHIFT &kp BSLH &kp Z  &kp X  &kp C  &kp V  &kp B  &kp K  &kp M  &kp COMMA &kp DOT  &kp UP           &kp FSLH 
+        &kp LCTRL  &kp LGUI &kp LALT &mo 1  &kp SPACE &kp SPACE &kp SPACE &kp SPACE &to 2 &kp GRAVE &kp LEFT &kp DOWN &kp RIGHT
         >;
     };
+    
     function { // 1
       display-name = "Function";
       // --------------------------------------------------------------------------------------------------
@@ -33,7 +34,7 @@
       // |       | DC 1  | DC 2 | DC 3 | DC 4  |       |       |       |      |     |      |      |       |
       // |       | BTLDR |      |      |       |       |       |       |      |     |      |      |       |
       bindings = <
-        &sys_reset    &kp F1        &kp F2         &kp F3        &kp F4      &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+        &sys_reset    &kp F1        &kp F2         &kp F3        &kp F4      &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12 &none
         &trans        &trans        &trans       &trans      &kp PRINTSCREEN &trans &trans &trans &trans &trans &trans  &trans  &trans
         &bt BT_CLR &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4  &trans &trans &trans &trans &trans &trans  &trans  &trans
         &trans     &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3   &bt BT_DISC 4 &trans &trans &trans &trans &trans &trans  &trans  &trans
@@ -49,7 +50,7 @@
       // |   |  \  |  Z   |  X   |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |     |     |
       // |   |     |      | LWR  |     |     |     |     |     |  `  |     |     |     |
       bindings = <
-        &trans &kp N1   &kp N2 &kp N3 &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9    &kp N0   &kp MINUS     &kp EQUAL
+        &trans &kp N1   &kp N2 &kp N3 &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9    &kp N0   &kp MINUS     &kp EQUAL &none
         &trans &kp Q    &kp W  &kp E  &kp R   &kp T   &kp Y   &kp U   &kp I   &kp O     &kp P    &kp LBKT      &kp RBKT
         &trans &kp A    &kp S  &kp D  &kp F   &kp G   &kp H   &kp J   &kp K   &kp L     &kp SEMI &kp SINGLE_QUOTE &trans
         &trans &kp BSLH &kp Z  &kp X  &kp C   &kp V   &kp B   &kp N   &kp M   &kp COMMA &kp DOT  &trans        &trans

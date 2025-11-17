@@ -9,28 +9,47 @@
 
   // KSCAN
   kscan0: kscan0 {
-    compatible = "m65legorev9,kscan";
+    compatible = "zmk,kscan-gpio-matrix";
+    diode-direction = "col2row";
+    wakeup-source;
 
-    latch-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;  /* KMK board.D7 */
-    clock-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;  /* KMK board.D8 */
-    data-out-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>; /* KMK board.D10 */
-    data-in-gpios  = <&gpio0 9 GPIO_ACTIVE_HIGH>;  /* KMK board.D9 */
-
-    status = "okay";
+    col-gpios
+      = <&shifter_out 9 GPIO_ACTIVE_HIGH>   // Physical col 0
+      , <&shifter_out 10 GPIO_ACTIVE_HIGH>  // Physical col 1
+      , <&shifter_out 11 GPIO_ACTIVE_HIGH>   // Physical col 2
+      , <&shifter_out 12 GPIO_ACTIVE_HIGH>   // Physical col 3
+      , <&shifter_out 13 GPIO_ACTIVE_HIGH>   // Physical col 4
+      , <&shifter_out 14 GPIO_ACTIVE_HIGH>   // Physical col 5
+      , <&shifter_out 15 GPIO_ACTIVE_HIGH>   // Physical col 6
+      , <&shifter_out 8 GPIO_ACTIVE_HIGH>   // Physical col 7
+      , <&shifter_out 7 GPIO_ACTIVE_HIGH>   // Physical col 8
+      , <&shifter_out 6 GPIO_ACTIVE_HIGH>   // Physical col 9
+      , <&shifter_out 5 GPIO_ACTIVE_HIGH>   // Physical col 10
+      , <&shifter_out 4 GPIO_ACTIVE_HIGH>  // Physical col 11
+      , <&shifter_out 0 GPIO_ACTIVE_HIGH>  // Physical col 12
+      , <&shifter_out 3 GPIO_ACTIVE_HIGH>  // Physical col 13 (encoder)
+      ;
+        
+    row-gpios
+      = <&shifter_in 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&shifter_in 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&shifter_in 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&shifter_in 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      , <&shifter_in 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+      ;
   };
 
   vbatt: vbatt {
-      compatible = "zmk,battery-nrf-vddh";
+    compatible = "zmk,battery-nrf-vddh";
   };
-
+  
   encoder0: encoder0 {
     compatible = "alps,ec11";
-    a-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    b-gpios = <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    a-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     steps = <80>;
     status = "okay";
   };
-
   sensors: sensors {
     compatible = "zmk,keymap-sensors";
     sensors = <&encoder0>;
@@ -40,15 +59,46 @@
   // Matrix transform
   default_transform: default_transform0 {
     compatible = "zmk,matrix-transform";
-    columns = <13>;
+    columns = <14>;
     rows = <5>;
 
     map = <
-      RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11) RC(0,12)
+      RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11) RC(0,12) RC(0,13)
       RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5) RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11) RC(1,12)
       RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11) RC(2,12)
       RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,6) RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11) RC(3,12)
       RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5) RC(4,6) RC(4,7) RC(4,8) RC(4,9) RC(4,10) RC(4,11) RC(4,12)
     >;
+  };
+};
+
+// shift registers
+&spi2 {
+  status = "okay";
+  cs-gpios
+  = <&xiao_d 7 GPIO_ACTIVE_LOW>
+  , <&xiao_d 6 GPIO_ACTIVE_LOW>  // dummy - we need manual cs control
+  ;
+
+  // 2x 74HC595 for column outputs
+  shifter_out: 595@0 {
+    compatible = "zmk,gpio-595";
+    status = "okay";
+    gpio-controller;
+    spi-max-frequency = <200000>;
+    reg = <0>;
+    #gpio-cells = <2>;
+    ngpios = <16>;
+  };
+  // 1x 74H165 for row input
+  shifter_in: 165@1 {
+    compatible = "m65legorev9,gpio-165";
+    status = "okay";
+    gpio-controller;
+    spi-max-frequency = <200000>;
+    reg = <1>;
+    #gpio-cells = <2>;
+    ngpios = <8>;
+    load-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;  // Shared with 595 CS
   };
 };
